@@ -185,15 +185,18 @@ class Decoder(nn.Module):
 if __name__ == "__main__":
     d_model = embedding_dim = 128
     num_heads = 4
+    batch_size = 1
     # d_model represents the size of the hidden dimension,
     # embedding_dim represent the size of the the encoded tensor
     vocab_size = 1000
     seq_length = 32
     n_layer = 6
-    input_sqe = torch.arange(seq_length)
+    # input_sqe = torch.tensor([torch.arange(seq_length), torch.arange(seq_length)])
+    # input_seq = torch.randint(0, 100, size=(batch_size, seq_length))
+    input_seq = torch.arange(seq_length)
     encoder = Encoder(seq_length=seq_length, vocab_size=vocab_size, embedding_dim=embedding_dim, d_model=d_model,
                       n_layer=n_layer, num_heads=num_heads)
-    encoded_tensor = encoder(input_sqe)
+    encoded_tensor = encoder(input_seq)
     print(encoded_tensor.shape)
 
     pass
