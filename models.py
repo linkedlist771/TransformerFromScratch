@@ -96,7 +96,10 @@ class MultiHeadAttention(nn.Module):
         self.proj = nn.Linear(self.d_model, self.d_model)
 
     def forward(self, Q, K, V):
-        return self.proj(torch.hstack([head(Q, K, V) for head in self.heads]))
+        # return self.proj(torch.hstack([head(Q, K, V) for head in self.heads]))
+        # fix: h stack has been replaced with the cat to make the batch compatiable
+        return self.proj(torch.cat([head(Q, K, V) for head in self.heads], dim=-1))
+
 
 
 class FeedForward(nn.Module):
