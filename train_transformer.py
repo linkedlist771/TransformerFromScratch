@@ -3,7 +3,7 @@ from torch import nn
 import torch.optim as optim
 from torch.utils.data import Dataset, DataLoader
 import numpy as np
-from models import Transformer
+from transformer import Transformer
 
 
 # SimpleSequenceDataset类保持不变
